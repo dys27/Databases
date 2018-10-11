@@ -1,2 +1,10 @@
 Join-us application.
 Stores your email id in the mysql database by using nodeJS. 
+
+you will have to install node_modules.
+
+npm init
+npm install express
+npm install faker --save
+npm install mysql --save
+npm install body-parser --save
