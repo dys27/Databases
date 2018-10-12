@@ -57,3 +57,18 @@ FOREIGN KEY(photo_id) REFERENCES photos(id),
 FOREIGN KEY(tag_id) REFERENCES tags(id),
 PRIMARY KEY(photo_id,tag_id)
 );
+
+DELIMITER $$
+
+CREATE TRIGGER prevent_self_follows
+	BEFORE INSERT ON follows FOR EACH ROW
+	BEGIN
+		IF NEW.follower_id = NEW.followee_id
+        THEN 
+			SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'you cannot follow yourself!';
+		END IF;
+	END;
+$$
+
+DELIMITER ;
