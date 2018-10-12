@@ -1,0 +1,1 @@
+DELETE FROM follows WHERE follower_id = 4 AND followee_id = 2; 
